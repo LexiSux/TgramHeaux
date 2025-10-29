@@ -1,22 +1,28 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'  // for cleaner paths
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/TgramHeaux/',  // ← THIS FIXES BLANK SCREEN ON GITHUB PAGES
+
+  // 1. Base for GitHub Pages (repo name)
+  base: '/TgramHeaux/',
+
+  // 2. Alias – point to the **root** (no src/ or client/)
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./client/src"),  // optional: for cleaner imports
+      '@': path.resolve(__dirname, '.'),   // <-- everything is in root
     },
   },
+
+  // 3. Build output (matches the workflow)
   build: {
-    outDir: 'dist',  // matches your workflow
-    emptyOutDir: true,  // clears old builds
-    sourcemap: false,  // faster, smaller bundles
+    outDir: 'dist',
+    emptyOutDir: true,
+    sourcemap: false,
   },
-  server: {
-    port: 3000,  // local dev port
-  },
-})
+
+  // 4. Optional: dev server port (you already had it)
+  server: { port: 3000 },
+});
