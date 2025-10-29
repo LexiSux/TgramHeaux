@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build   # ← This runs "vite build"
+        run: npm run build
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
