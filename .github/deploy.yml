@@ -14,9 +14,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
+     - name: Checkout
+  uses: actions/checkout@v4
+  with:
+    fetch-depth: 0  # Full history — clears old refs like Docs
+    ref: main       # Explicitly use main branch
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
